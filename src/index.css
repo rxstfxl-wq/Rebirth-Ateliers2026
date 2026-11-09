@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-anton: 'Anton', sans-serif;
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-script: 'Caveat', cursive;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  --color-charcoal: #1A1A1A;
+  --color-bone: #F2EFE9;
+  --color-concrete: #8C8C8C;
+  --color-olive: #6D6E37;
+  --color-acid: #E1E724;
+}
+
+/* Custom font utilities for strict brand typography */
+.font-anton {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.font-script {
+  font-family: 'Caveat', cursive;
+}
+
+.font-body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Editorial hairline dividers */
+.border-hairline {
+  border-color: rgba(26, 26, 26, 0.12);
+}
+
+.border-hairline-light {
+  border-color: rgba(242, 239, 233, 0.15);
+}
+
+/* Smooth scroll and custom scrollbar */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444444;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E1E724;
+}

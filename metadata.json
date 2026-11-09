@@ -1,0 +1,6 @@
+{
+  "name": "REBIRTH ATELIERS®",
+  "description": "Digital editorial experience and archival streetwear atelier exploring transformation, renewal and creative evolution. Cape Town, South Africa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
