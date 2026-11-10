@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Play, Pause, Volume2, ChevronDown } from 'lucide-react';
 import { BrandEmblem } from '../components/BrandLogo';
 import { PRODUCTS, DROP_01_COLLECTION, Product } from '../data/products';
@@ -12,8 +12,21 @@ interface HomeProps {
 
 export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
   const [scrollY, setScrollY] = useState(0);
-  const [isPlayingReel, setIsPlayingReel] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlayingReel, setIsPlayingReel] = useState(true);
   const [isAudioActive, setIsAudioActive] = useState(false);
+
+  const toggleReelPlayback = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setIsPlayingReel(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlayingReel(false);
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -153,20 +166,25 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
               </p>
             </div>
 
-            {/* Right: Editorial Portrait with Circular Play Control */}
+            {/* Right: Editorial Lookbook Video Reel with Playback Control */}
             <div className="lg:col-span-7">
               <div className="relative aspect-[16/9] bg-neutral-900 border border-white/15 overflow-hidden group">
-                <img
-                  src="/assets/aistudio/image_0d728e63.png"
-                  alt="Editorial transformation model portrait"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-bottom grayscale contrast-125 group-hover:scale-102 transition-transform duration-700"
+                <video
+                  ref={videoRef}
+                  src="/Shop%20content/Rebirth%20Product%20Shop%20Reel%20A.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  onPlay={() => setIsPlayingReel(true)}
+                  onPause={() => setIsPlayingReel(false)}
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                   <button
-                    onClick={() => setIsPlayingReel(!isPlayingReel)}
+                    onClick={toggleReelPlayback}
                     className="w-14 h-14 rounded-full border border-white text-white bg-black/60 backdrop-blur-sm flex items-center justify-center hover:bg-[#E1E724] hover:text-[#1A1A1A] hover:border-[#E1E724] transition-all cursor-pointer shadow-lg"
-                    title={isPlayingReel ? 'Pause' : 'Play'}
+                    title={isPlayingReel ? 'Pause Lookbook Reel' : 'Play Lookbook Reel'}
                   >
                     {isPlayingReel ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
                   </button>

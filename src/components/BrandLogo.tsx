@@ -50,6 +50,9 @@ interface BrandLogoProps {
   onClick?: () => void;
 }
 
+/**
+ * Official REBIRTH ATELIERS® Logo from rebirth logo_1.svg in pure black
+ */
 export const BrandLogo: React.FC<BrandLogoProps> = ({
   variant = 'auto',
   showEmblem = true,
@@ -57,69 +60,77 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   className = '',
   onClick
 }) => {
-  const textColor =
-    variant === 'light'
-      ? 'text-[#F2EFE9]'
-      : variant === 'acid'
-      ? 'text-[#E1E724]'
-      : variant === 'dark'
-      ? 'text-[#1A1A1A]'
-      : 'text-current';
-
-  const emblemColor =
+  const fillColor =
     variant === 'light'
       ? '#F2EFE9'
       : variant === 'acid'
       ? '#E1E724'
-      : variant === 'dark'
-      ? '#1A1A1A'
-      : 'currentColor';
+      : '#1A1A1A'; // Black as requested
 
   const sizeClasses = {
-    sm: {
-      wrap: 'gap-2',
-      title: 'text-lg leading-none tracking-tight',
-      sub: 'text-[9px] tracking-[0.2em]',
-      emblem: 'w-4 h-5',
-    },
-    md: {
-      wrap: 'gap-2.5',
-      title: 'text-2xl leading-none tracking-tight',
-      sub: 'text-[11px] tracking-[0.24em]',
-      emblem: 'w-5 h-6',
-    },
-    lg: {
-      wrap: 'gap-3.5',
-      title: 'text-3xl lg:text-4xl leading-none tracking-tight',
-      sub: 'text-xs tracking-[0.26em]',
-      emblem: 'w-7 h-8',
-    },
-    xl: {
-      wrap: 'gap-4',
-      title: 'text-5xl lg:text-6xl leading-none tracking-tight',
-      sub: 'text-sm lg:text-base tracking-[0.3em]',
-      emblem: 'w-9 h-11',
-    },
+    sm: 'h-6 w-auto',
+    md: 'h-7 sm:h-8 w-auto',
+    lg: 'h-10 sm:h-11 w-auto',
+    xl: 'h-12 sm:h-14 w-auto',
   }[size];
 
   return (
     <div
       onClick={onClick}
-      className={`inline-flex items-center select-none cursor-pointer group ${sizeClasses.wrap} ${textColor} ${className}`}
+      className={`inline-flex items-center select-none cursor-pointer group ${className}`}
+      title="REBIRTH ATELIERS®"
     >
-      <div className="flex flex-col">
-        <span className={`font-anton uppercase ${sizeClasses.title} transition-transform duration-300 group-hover:tracking-wider`}>
-          REBIRTH
-        </span>
-        <span className={`font-bebas uppercase font-medium ${sizeClasses.sub} text-neutral-400 group-hover:text-current transition-colors`}>
-          ATELIERS®
-        </span>
-      </div>
-      {showEmblem && (
-        <div className="transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-          <BrandEmblem className={sizeClasses.emblem} color={emblemColor} />
-        </div>
-      )}
+      <svg
+        id="Layer_2"
+        data-name="Layer 2"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20.99 9.3"
+        className={`${sizeClasses} transition-transform duration-300 group-hover:scale-105`}
+        aria-label="REBIRTH ATELIERS®"
+      >
+        <g id="Layer_1-2" data-name="Layer 1">
+          <g>
+            <g>
+              <path
+                fill={fillColor}
+                d="M14.51,2.62l-.08.29-.63,2.27-.07.27c.54-.57.85-1.32.85-2.13,0-.24-.03-.47-.07-.7Z"
+              />
+              <path
+                fill={fillColor}
+                d="M14.57,2.38l-.06.24-.08.29c.02.14.03.27.03.41,0,.66-.22,1.31-.66,1.86l-.07.27-.07.24c.67-.61,1.05-1.45,1.05-2.37,0-.32-.05-.63-.14-.94Z"
+              />
+              <path
+                fill={fillColor}
+                d="M13.26,7.15l-.1-.13-.09-.13-.53-.75c.35-.16.65-.35.9-.58l.87-3.18c-.41-1.3-1.68-2.38-3.76-2.38h-3.37v8.7c0,.34.26.6.6.6h1.8v-2.78h.3l1.62,2.3c.2.29.55.48.93.48h2.34l-1.51-2.15ZM10.55,4.47h-.97v-2.42h.97c.94,0,1.45.63,1.45,1.26,0,.58-.45,1.16-1.45,1.16Z"
+              />
+            </g>
+            <path
+              fill={fillColor}
+              d="M18.59.6c-.1-.35-.41-.6-.77-.6h-2.59l-.66,2.38-.06.24-.08.29-.63,2.27-.07.27-.07.24-.32,1.15,1.64,2.32.08.12.32-1.3h2.81l.18.72c.1.35.4.6.76.6h1.86L18.59.6ZM15.9,5.93l.89-3.57.89,3.57h-1.78Z"
+            />
+          </g>
+          <g>
+            <g>
+              <path
+                fill={fillColor}
+                d="M5.6,2.94c-.23.47-.75,1.11-1.17,1.63-.22.27-.42.51-.56.71-.16.19-.25.21-.28.21-.05,0-.12-.07-.19-.17-.27-.44-.33-1.33-.17-1.67.27-.76,1.15-.85,1.52-.85.29,0,.59.05.85.14Z"
+              />
+              <path
+                fill={fillColor}
+                d="M2.31,4.58c-.07.36-.22.67-.42.86-.18-.17-.53-.63-.79-.98-.13-.17-.26-.35-.37-.49-.09-.16-.23-.33-.37-.5C.24,3.32-.02,3.01,0,2.92,0,2.92.01,2.9,0,2.9c.22-.07.48-.11.74-.11.54,0,1,.16,1.27.43l.13.16c.2.28.26.74.17,1.2Z"
+              />
+            </g>
+            <path
+              fill={fillColor}
+              d="M3.48,1.95c-.3.19-.55.45-.74.74-.19-.29-.45-.55-.75-.74.38-.27.64-.67.75-1.13.1.46.37.86.74,1.13Z"
+            />
+            <path
+              fill={fillColor}
+              d="M3.45,6.56c-.38.27-.65.67-.75,1.13-.1-.46-.37-.86-.75-1.13.3-.19.56-.45.75-.75.19.3.45.56.75.75Z"
+            />
+          </g>
+        </g>
+      </svg>
     </div>
   );
 };

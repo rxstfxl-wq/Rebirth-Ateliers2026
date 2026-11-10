@@ -75,14 +75,48 @@ export const Store: React.FC<StoreProps> = ({ onOpenProduct }) => {
   return (
     <div className="min-h-screen bg-[#F2EFE9] text-[#1A1A1A] pt-28 pb-24 selection:bg-[#E1E724] selection:text-[#1A1A1A]">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-10">
-        {/* Header (Panel 02 wireframe: STORE / CURRENT DROP — REBIRTH // 01) */}
-        <div className="space-y-1 border-b border-[#1A1A1A]/10 pb-6">
-          <h1 className="font-anton text-6xl sm:text-7xl lg:text-8xl uppercase tracking-tight text-[#1A1A1A] leading-none">
-            STORE
-          </h1>
-          <span className="font-bebas text-lg sm:text-xl tracking-[0.22em] text-neutral-600 uppercase block">
-            CURRENT DROP — REBIRTH // 01
-          </span>
+        {/* Header with Layer-Masked Video Reel (Matching Screenshot Area) */}
+        <div className="relative overflow-hidden border-b border-[#1A1A1A]/10 pb-6 pt-1 min-h-[160px] sm:min-h-[185px] flex flex-col justify-between">
+          {/* Layer-Masked Video Background */}
+          <div
+            className="absolute inset-y-0 right-0 w-full sm:w-2/3 lg:w-3/5 overflow-hidden pointer-events-none select-none z-0"
+            style={{
+              maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0) 100%)'
+            }}
+          >
+            <video
+              src="/Shop%20content/Rebirth%20Product%20Shop%20Reel%20A.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover object-center mix-blend-multiply opacity-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#F2EFE9]/30 via-transparent to-[#F2EFE9]/10 pointer-events-none" />
+          </div>
+
+          {/* Foreground Typography & Meta */}
+          <div className="relative z-10 space-y-1">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-1.5 h-1.5 bg-[#E1E724] border border-[#1A1A1A] animate-pulse" />
+              <span className="text-[10px] font-mono tracking-widest text-[#6D6E37] uppercase font-bold">
+                ROTATING 360° ATELIER SHOWCASE // REEL A
+              </span>
+            </div>
+            <h1 className="font-anton text-6xl sm:text-7xl lg:text-8xl uppercase tracking-tight text-[#1A1A1A] leading-none">
+              STORE
+            </h1>
+            <span className="font-bebas text-lg sm:text-xl tracking-[0.22em] text-neutral-600 uppercase block">
+              CURRENT DROP — REBIRTH // 01
+            </span>
+          </div>
+
+          <div className="relative z-10 pt-2 flex items-center gap-3 text-[10px] font-mono text-neutral-500">
+            <span>COLLECTION 2026/2027</span>
+            <span>·</span>
+            <span>CAPE TOWN ATELIER</span>
+          </div>
         </div>
 
         {/* Minimal Single-Line Filter Ribbon (Panel 02 layout) */}
