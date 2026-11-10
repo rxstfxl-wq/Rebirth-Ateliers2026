@@ -52,6 +52,26 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
           Outlined "SHOP THE DROP ->", and Vertical Indicator "01 \ 02 \ 03"
           ───────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-24 pb-8 px-6 sm:px-10 lg:px-16 border-b border-white/10">
+        {/* Full Section Layer-Masked Looping Video Reel */}
+        <div
+          className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0"
+          style={{
+            maskImage: 'radial-gradient(ellipse at 65% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 65% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%)'
+          }}
+        >
+          <video
+            src="/Shop%20content/Rebirth%20Product%20Shop%20Reel%20A.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover object-center opacity-45 mix-blend-screen scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-[#1A1A1A]/85 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/40 to-transparent pointer-events-none" />
+        </div>
+
         {/* Subtle Ambient Sound & Status Header Strip */}
         <div className="relative z-10 w-full flex items-center justify-between text-[11px] font-mono text-neutral-400 border-b border-white/10 pb-3">
           <div className="flex items-center gap-3">
