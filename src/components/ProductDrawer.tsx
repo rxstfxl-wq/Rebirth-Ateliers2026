@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { X, Check, ShoppingBag, ShieldCheck, Sparkles, ChevronRight } from 'lucide-react';
+import { X, Check, ShoppingBag, ShieldCheck, Sparkles, ChevronRight, Box } from 'lucide-react';
 import { Product } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { BrandEmblem } from './BrandLogo';
+import { ThreeModelViewer } from './ThreeModelViewer';
 
 interface ProductDrawerProps {
   product: Product | null;
@@ -17,6 +18,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ product, onClose }
   const [quantity, setQuantity] = useState(1);
   const [addedAnimation, setAddedAnimation] = useState(false);
   const [activeTab, setActiveTab] = useState<'details' | 'care' | 'shipping'>('details');
+  const [displayMode, setDisplayMode] = useState<'standard' | '3d'>('standard');
 
   if (!product) return null;
 
@@ -56,22 +58,63 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ product, onClose }
 
           {/* Product Body */}
           <div className="p-6 sm:p-8 space-y-6 flex-1">
-            <div className="relative aspect-[4/3] bg-neutral-100 overflow-hidden border border-[#1A1A1A]/15 group flex items-center justify-center p-3">
-              <img
-                src={product.image}
-                alt={product.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute top-3 left-3 bg-[#1A1A1A] text-white text-[10px] font-bebas tracking-widest px-2.5 py-1">
-                {product.category.toUpperCase()}
+            {/* View Mode Toggle: Standard vs 3D Model View */}
+            <div className="flex items-center justify-between border-b border-[#1A1A1A]/10 pb-3">
+              <div className="flex items-center gap-1 bg-white p-1 border border-[#1A1A1A]/20">
+                <button
+                  type="button"
+                  onClick={() => setDisplayMode('standard')}
+                  className={`px-3 py-1 font-bebas text-xs sm:text-sm tracking-wider uppercase transition-colors cursor-pointer ${
+                    displayMode === 'standard'
+                      ? 'bg-[#1A1A1A] text-white'
+                      : 'text-neutral-600 hover:text-black'
+                  }`}
+                >
+                  STANDARD VIEW
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDisplayMode('3d')}
+                  className={`px-3 py-1 font-bebas text-xs sm:text-sm tracking-wider uppercase transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    displayMode === '3d'
+                      ? 'bg-[#1A1A1A] text-[#E1E724]'
+                      : 'text-neutral-600 hover:text-black'
+                  }`}
+                >
+                  <Box className="w-3.5 h-3.5 text-[#E1E724]" />
+                  <span>3D MODEL VIEW</span>
+                </button>
               </div>
-              {product.isHeroDropPiece && (
-                <div className="absolute top-3 right-3 bg-[#E1E724] text-[#1A1A1A] text-[10px] font-bebas tracking-widest px-2.5 py-1 font-bold">
-                  DROP 01 HERO PIECE
-                </div>
-              )}
+
+              <span className="text-[10px] font-mono text-neutral-500 uppercase hidden sm:inline">
+                {displayMode === '3d' ? 'INTERACTIVE THREE.JS RIG' : 'STUDIO PHOTOGRAPHY'}
+              </span>
             </div>
+
+            {/* Visual presentation */}
+            {displayMode === 'standard' ? (
+              <div className="relative aspect-[4/3] bg-neutral-100 overflow-hidden border border-[#1A1A1A]/15 group flex items-center justify-center p-3">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute top-3 left-3 bg-[#1A1A1A] text-white text-[10px] font-bebas tracking-widest px-2.5 py-1">
+                  {product.category.toUpperCase()}
+                </div>
+                {product.isHeroDropPiece && (
+                  <div className="absolute top-3 right-3 bg-[#E1E724] text-[#1A1A1A] text-[10px] font-bebas tracking-widest px-2.5 py-1 font-bold">
+                    DROP 01 HERO PIECE
+                  </div>
+                )}
+              </div>
+            ) : (
+              <ThreeModelViewer
+                modelUrl="/Shop%20content/beanie.fbx"
+                modelName={`${product.name} — 3D Product View`}
+              />
+            )}
 
             {/* Title & Price */}
             <div className="space-y-2 border-b border-[#1A1A1A]/10 pb-5">

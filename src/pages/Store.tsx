@@ -217,6 +217,9 @@ export const Store: React.FC<StoreProps> = ({ onOpenProduct }) => {
                     <div className="absolute top-3 left-3 text-[10px] font-mono text-neutral-500 uppercase bg-white/70 px-1.5 py-0.5">
                       {product.sku}
                     </div>
+                    <div className="absolute top-3 right-3 text-[10px] font-mono text-[#1A1A1A] bg-[#E1E724] px-1.5 py-0.5 font-bold flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+                      <span>3D RIG</span>
+                    </div>
                   </div>
 
                   {/* Clean Typography & Minimal '+' Action */}
