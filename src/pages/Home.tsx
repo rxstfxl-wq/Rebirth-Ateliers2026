@@ -98,11 +98,9 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
           {/* Left Column: Typography & Outlined CTA */}
           <div className="lg:col-span-6 space-y-6">
             <div className="space-y-1">
-              <h1 className="font-anton text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.88] text-white">
-                REBIRTH
-                <br />
-                <span className="text-neutral-200">ATELIERS</span>
-                <span className="text-[#E1E724] text-4xl sm:text-6xl align-top ml-1">®</span>
+              <h1 className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl tracking-tight uppercase leading-none text-white whitespace-nowrap">
+                REBIRTH <span className="text-neutral-200">ATELIERS</span>
+                <span className="text-[#E1E724] text-xl sm:text-2xl md:text-3xl lg:text-4xl align-top ml-1">®</span>
               </h1>
             </div>
 
@@ -121,19 +119,17 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
             </div>
           </div>
 
-          {/* Right Column: Macro Butterfly Wing Articulation */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-full aspect-[4/5] max-w-md bg-neutral-900 border border-white/10 overflow-hidden shadow-2xl">
-              <img
-                src="/assets/aistudio/image_0d728e63.png"
-                alt="Macro butterfly wing"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-left-top grayscale contrast-150 scale-125 hover:scale-130 transition-transform duration-1000"
+          {/* Right Column: Looping Landing Campaign Video (Full Width, No Portrait Masking) */}
+          <div className="lg:col-span-5 relative w-full flex items-center justify-center">
+            <div className="relative w-full aspect-video bg-neutral-900 border border-white/15 overflow-hidden shadow-2xl">
+              <video
+                src="/Rebirth%20Landing%20Video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 text-[10px] font-mono text-neutral-400">
-                SPECIMEN // LEPIDOPTERA WING VENATION
-              </div>
             </div>
           </div>
 
