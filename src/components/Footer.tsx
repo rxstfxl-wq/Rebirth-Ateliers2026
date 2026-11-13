@@ -191,7 +191,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           <div className="mt-6 pt-6 border-t border-white/10 flex flex-col gap-2 font-mono text-xs">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/rxstfxl/"
               target="_blank"
               rel="noreferrer"
               className="text-neutral-400 hover:text-[#E1E724] transition-colors flex items-center justify-between"
