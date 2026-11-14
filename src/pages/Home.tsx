@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Play, Pause, Volume2, ChevronDown } from 'lucide-react';
+import { ArrowRight, Play, Pause, Volume2, VolumeX, ChevronDown } from 'lucide-react';
 import { BrandEmblem } from '../components/BrandLogo';
 import { PRODUCTS, DROP_01_COLLECTION, Product } from '../data/products';
 import { PageId } from '../components/Header';
@@ -13,8 +13,20 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const landingVideoRef = useRef<HTMLVideoElement>(null);
   const [isPlayingReel, setIsPlayingReel] = useState(true);
   const [isAudioActive, setIsAudioActive] = useState(false);
+  const [isLandingVideoMuted, setIsLandingVideoMuted] = useState(true);
+
+  const toggleLandingVideoMute = () => {
+    setIsLandingVideoMuted(prev => {
+      const next = !prev;
+      if (landingVideoRef.current) {
+        landingVideoRef.current.muted = next;
+      }
+      return next;
+    });
+  };
 
   const toggleReelPlayback = () => {
     if (videoRef.current) {
@@ -96,7 +108,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
         {/* Central Hero Composition */}
         <div className="relative z-10 w-full my-auto py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Typography & Outlined CTA */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-11 space-y-6">
             <div className="space-y-1">
               <h1 className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl tracking-tight uppercase leading-none text-white whitespace-nowrap">
                 REBIRTH <span className="text-neutral-200">ATELIERS</span>
@@ -116,20 +128,6 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
                 <span>SHOP THE DROP</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
-            </div>
-          </div>
-
-          {/* Right Column: Looping Landing Campaign Video (Full Width, No Portrait Masking) */}
-          <div className="lg:col-span-5 relative w-full flex items-center justify-center">
-            <div className="relative w-full aspect-video bg-neutral-900 border border-white/15 overflow-hidden shadow-2xl">
-              <video
-                src="/Rebirth%20Landing%20Video.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover object-center"
-              />
             </div>
           </div>
 
@@ -155,6 +153,39 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenProduct }) => {
             <span>AUTUMN / WINTER 2026</span>
           </div>
         </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          FULL-WIDTH LANDING VIDEO SECTION
+          ───────────────────────────────────────────────────────────── */}
+      <section className="relative w-full bg-[#1A1A1A] overflow-hidden border-b border-white/10">
+        <video
+          ref={landingVideoRef}
+          src="/Rebirth%20Landing%20Video.mp4"
+          autoPlay
+          loop
+          muted={isLandingVideoMuted}
+          playsInline
+          className="w-full h-auto block"
+        />
+        <button
+          type="button"
+          onClick={toggleLandingVideoMute}
+          aria-label={isLandingVideoMuted ? 'Unmute video' : 'Mute video'}
+          className="absolute bottom-4 right-4 z-10 flex items-center gap-2 px-3 py-2 bg-[#1A1A1A]/80 hover:bg-[#E1E724] text-white hover:text-[#1A1A1A] border border-white/20 hover:border-[#E1E724] font-mono text-xs uppercase tracking-widest transition-colors cursor-pointer"
+        >
+          {isLandingVideoMuted ? (
+            <>
+              <VolumeX className="w-4 h-4" />
+              <span>UNMUTE</span>
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-4 h-4" />
+              <span>MUTE</span>
+            </>
+          )}
+        </button>
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
